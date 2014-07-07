@@ -1,4 +1,0 @@
-leader-board
-============
-
-leader-board
