@@ -18,9 +18,9 @@ LIBS += "C:\Program Files (x86)\PrimeSense\NiTE2\Lib\NiTE2.lib"
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    KinectController.cpp
+    KinectThread.cpp
 
 HEADERS  += mainwindow.h \
-    KinectController.h
+    KinectThread.h
 
 FORMS    += mainwindow.ui
