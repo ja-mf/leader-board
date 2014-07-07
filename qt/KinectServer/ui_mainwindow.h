@@ -33,7 +33,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(594, 352);
+        MainWindow->resize(400, 300);
         actionConnect_Kinect = new QAction(MainWindow);
         actionConnect_Kinect->setObjectName(QStringLiteral("actionConnect_Kinect"));
         centralWidget = new QWidget(MainWindow);
@@ -41,7 +41,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 594, 21));
+        menuBar->setGeometry(QRect(0, 0, 400, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);

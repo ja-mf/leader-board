@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <iostream>
 
-#include "KinectHandler.h"
+#include "KinectController.h"
 
 using namespace std;
 
@@ -20,9 +20,7 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow* ui;
-
-    KinectHandler*  khandler;
+    Ui::MainWindow *ui;
 
 public slots:
     void on_actionConnect_Kinect_triggered();
