@@ -36,49 +36,32 @@
 int num = 50; //how many particles we'll have in the system. More particles = slower sketch.
  
 Particle[] particle = new Particle[num]; //Initialise array of particles of length "num"
-var div1, div2, div3, div4;
-
-
+ 
 //------------------------ SETUP ---------------------------------------
  
 void setup(){
-  size(800, 600);
+  size(600, 400);
   smooth();  //turn on anti-aliasing
   noStroke();
   background(255);
-
-  div1=floor(Math.random()*5+12.5);
-  div2=floor(Math.random()*5+12.5);
-  div3=floor(Math.random()*5+12.5);
-  div4=50-div1-div2-div3;
-
+   
   //fill particle array with new Particle objects
   for(int i=0; i<particle.length; i++){
-    particle[i] = new Particle(new PVector(random(0, width), random(0, height)), 4, 10, 10);
+    particle[i] = new Particle(new PVector(random(0, width), random(0, height)), 2, 10, 10);
   }
 }
  
 //------------------------ DRAW ----------------------------------------
  
 void draw(){
-   //draw trails, trail length can be altered by making alpha value in fill() lower
-  fill(10, 70);
+   
+  //draw trails, trail length can be altered by making alpha value in fill() lower
+  fill(255, 100);
   rect(0, 0, width, height);
  
   //run all the particles in the array every frame
-	
-
-  for(int i=0; i<div1; i++){
-	particle[i].run(mouseX, mouseY); //run() method takes two arguments - x and y values to apply forces to
-  }
-  for (int i=div1; i<div1+div2; i++){
-	particle[i].run(random(0,width/2), random(0,height/2)); 
-  }
-  for (int i=div1+div2; i<div1+div2+div3; i++){
-	particle[i].run(random(width/2,width), random(height/2,height)); 
-  }
-  for (int i=50-div4; i<50; i++){
-	particle[i].run(random(width/2,width), random(0,height)); 
+  for(int i=0; i<particle.length; i++){
+    particle[i].run(mouseX, mouseY); //run() method takes two arguments - x and y values to apply forces to
   }
 }
  
@@ -112,11 +95,8 @@ class Particle{
    
   //method to render the particle. control how it looks here!
   void display(){
-	  var _dist;
-	
-	_dist = dist(loc.x, loc.y, mouseX, mouseY);
     ellipseMode(CENTER);
-    fill(_dist, 255, _dist);
+    fill(d, 0, 255);
     ellipse(loc.x, loc.y, sz, sz);
   }
    
@@ -130,7 +110,7 @@ class Particle{
      
     //calculate the strength of the force by factoring in a gravitational constant and the mass of a particle
     //multiply by distance^2
-    float force = (gravity*mass)/(d*d);
+    float force = (gravity*mass) / (d*d);
      
     //if the mouse is pressed, turn on repulsion by multiplying direction by 1
     if(mousePressed){
@@ -178,7 +158,7 @@ class Particle{
     update();
   }
 }
-</script><canvas width="800" height="600"></canvas>	
+</script><canvas width="640" height="360"></canvas>	
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.js"><\/script>')</script>
