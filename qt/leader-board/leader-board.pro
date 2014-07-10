@@ -1,5 +1,6 @@
 TEMPLATE = app
 CONFIG += console
+CONFIG -= app_bundle
 CONFIG -= qt
 
 INCLUDEPATH += "C:\Program Files (x86)\OpenNI2\Include"
