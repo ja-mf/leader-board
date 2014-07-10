@@ -177,6 +177,7 @@ Makefile: echoserver.pro C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\win32-msvc201
 		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\qt.prf \
 		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\resources.prf \
 		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\moc.prf \
+		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\win32\opengl.prf \
 		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\testcase_targets.prf \
 		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\exceptions.prf \
 		C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\yacc.prf \
@@ -185,6 +186,7 @@ Makefile: echoserver.pro C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\win32-msvc201
 		C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5WebSockets.prl \
 		C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Sql.prl \
 		C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Network.prl \
+		C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Gui.prl \
 		C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-msvc2012 CONFIG+=debug -o Makefile echoserver.pro
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\spec_pre.prf:
@@ -291,6 +293,7 @@ C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\warn_on.prf:
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\qt.prf:
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\resources.prf:
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\moc.prf:
+C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\win32\opengl.prf:
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\testcase_targets.prf:
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\exceptions.prf:
 C:\Qt\Qt5.3.1\5.3\msvc2012_opengl\mkspecs\features\yacc.prf:
@@ -299,6 +302,7 @@ echoserver.pro:
 C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5WebSockets.prl:
 C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Sql.prl:
 C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Network.prl:
+C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Gui.prl:
 C:/Qt/Qt5.3.1/5.3/msvc2012_opengl/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2012 CONFIG+=debug -o Makefile echoserver.pro

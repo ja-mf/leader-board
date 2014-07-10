@@ -28,16 +28,28 @@ int main()
         const nite::Array<nite::HandData>& hands = handFrame.getHands();
         int g_nHandsCount = hands.getSize();
 
-        for(int i=0; i<g_nHandsCount; i++) {
-            const nite::HandData& handData = hands[i];
-            if(handData.isTracking()) {
-                float x, y;
-                pHandTracker->convertHandCoordinatesToDepth(
-                            handData.getPosition().x,
-                            handData.getPosition().y,
-                            handData.getPosition().z, &x, &y);
-                cout << i << ": X: " << x << ", Y: " << y << endl;
+        cout << "[";
+        for(int i=0; i<4; i++) {
+            if(i<g_nHandsCount) {
+                const nite::HandData& handData = hands[i];
+                if(handData.isTracking()) {
+                    float x, y;
+                    pHandTracker->convertHandCoordinatesToDepth(
+                                handData.getPosition().x,
+                                handData.getPosition().y,
+                                handData.getPosition().z, &x, &y);
+                    cout << "{" << i << "," << handData.getPosition().x << "," << handData.getPosition().y << "," << handData.getPosition().z << "}" << endl;
+                    //cout << g_nHandsCount << "|" << i << ": X: " << handData.getPosition().x << ", Y: " << handData.getPosition().y << ", Z: " << handData.getPosition().z << endl;
+
+                }
+            } else {
+                cout << "{" << i << ",NULL,NULL,NULL}" << endl;
             }
+
+            if(i<3)
+                cout << ",";
+            else
+                cout << "]" << endl;
         }
     }//fin while
 

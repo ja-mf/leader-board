@@ -3,6 +3,7 @@
 
 #include <QThread>
 #include <QtWebSockets>
+#include <NiTE.h>
 
 class GenInfo : public QThread
 {

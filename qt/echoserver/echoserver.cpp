@@ -77,7 +77,7 @@ void EchoServer::onNewConnection()
     //while(1) {
     connect(generador,SIGNAL(enviarInfo(QString)), this, SLOT(enviar(QString)));
 
-    pSocket->sendTextMessage("hola");
+    pSocket->sendTextMessage("Connecting Kinect...");
     generador->start();
     //QThread::msleep(500);
     //}
