@@ -1,5 +1,7 @@
 *.exe
 *.user
 *.obj
-KinectServer.ilk
-KinectServer.pdb
+echoserver.ilk
+echoserver.pdb
+leader-board.ilk
+leader-board.pdb

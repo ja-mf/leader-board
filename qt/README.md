@@ -1,9 +1,9 @@
 Kinect @ Qt - MSVC - OPENNI - NiTE
 ===
 
-Dependencies por developing:
+Dependencies for developing:
 
-* Microsoft Visual C 2010+ (MSVC) [here](http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx)
+* Microsoft Visual Studio 2012 Express (MSVC) [here](http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx)
 
 * Qt creator 5.3 for MSVC [here](http://qt-project.org/downloads) (click on show downloads)
 
