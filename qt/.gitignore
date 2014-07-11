@@ -1,0 +1,7 @@
+*.exe
+*.user
+*.obj
+echoserver.ilk
+echoserver.pdb
+leader-board.ilk
+leader-board.pdb
