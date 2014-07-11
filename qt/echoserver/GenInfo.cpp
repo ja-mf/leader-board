@@ -46,9 +46,8 @@ void GenInfo::run() {
                                 handData.getPosition().z, &x, &y);
                     json_stream.append("{ \"n\": "+
                                        QString::number(i)+", \"x\": "+
-                                       QString::number(handData.getPosition().x)+", \"y\": "+
-                                       QString::number(handData.getPosition().y)+", \"z\": "+
-                                       QString::number(handData.getPosition().z)+"}");
+                                       QString::number(x)+", \"y\": "+
+                                       QString::number(y)+", \"z\": null}");
                     //cout << "{" << i << "," << handData.getPosition().x << "," << handData.getPosition().y << "," << handData.getPosition().z << "}" << endl;
                     //cout << g_nHandsCount << "|" << i << ": X: " << handData.getPosition().x << ", Y: " << handData.getPosition().y << ", Z: " << handData.getPosition().z << endl;
                 }
@@ -67,6 +66,7 @@ void GenInfo::run() {
                 //###############
                 // ENVIAR!!!!:
                 emit enviarInfo(json_stream);
+                cout << json_stream.toStdString() << endl;
                 //cout << "]" << endl;
             }
         }
