@@ -69,9 +69,9 @@ void draw(){
 	
 
   for(int i=0; i<div1; i++){
-	particle[i].run(mouseX, mouseY); //run() method takes two arguments - x and y values to apply forces to
+	particle[i].run(50, 20); //run() method takes two arguments - x and y values to apply forces to
   }
-  for (int i=div1; i<div1+div2; i++){
+  /*for (int i=div1; i<div1+div2; i++){
 	particle[i].run(random(0,width/2), random(0,height/2)); 
   }
   for (int i=div1+div2; i<div1+div2+div3; i++){
@@ -79,7 +79,7 @@ void draw(){
   }
   for (int i=50-div4; i<50; i++){
 	particle[i].run(random(width/2,width), random(0,height)); 
-  }
+  }*/
 }
  
 //------------------------ OBJECT --------------------------------------
