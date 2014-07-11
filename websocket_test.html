@@ -3,38 +3,92 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-				<script type="text/javascript">
-					function wstest() {
-						var ws = new WebSocket("ws://192.168.1.34:1235");
-						ws.onopen = function() { console.log("connection established"); };
-					//	ws.send("HOLAAAAAAAA");
-						ws.onmessage = function(e) { console.log(e.data); };
-						ws.onclose = function() { console.log("connection closed"); };
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="js/vendor/processing.js"></script>
+    <script type="text/javascript">
+    
+        var ws = new WebSocket("ws://10.2.50.85:10004");
+        var manitos = [{"n": 0, "x": null, "y": null, "z": null}, {"n": 1, "x": null, "y": null, "z": null},
+                       {"n": 2, "x": null, "y": null, "z": null}, {"n": 3, "x": null, "y": null, "z": null}];
+        var manitos_tr = manitos;
+        ws.onopen = function() { console.log("connection established"); };
+        ws.onmessage = function(e) {
+            if (e.data.length > 40) {
+                try {
+                    manitos = JSON.parse(e.data);
+                    manitos_tr = manitos;
+                    for (var i = 0; i < 4; i++) {
+                        manitos_tr[i].x += 0;
+                        manitos_tr[i].x += 0;
+                    // falta la transformacion si los bordes son mas grandes 
+                    }
+                } catch (err){
+                    console.log(e.data);
+                    console.log(err);
+                }
+            }
+            else {
+                console.log(e.data);
+            }
+        };
 
-						//var m = {n: num_de_mano, x: x_coord, y: y_coord}
-						
+        ws.onclose = function() { console.log("connection closed"); };
+        
+    </script>
 
-					}
-				</script>
-    </head>
-    <body>
-			<a href="javascript:wstest()">shit</a>
-        <p></p>
-		
+</head>
+<body>
+<script type="application/processing"> 
+int rad = 10;        // Width of the shape
+float xpos, ypos;    // Starting position of shape    
+
+float xspeed = 2.8;  // Speed of the shape
+float yspeed = 2.2;  // Speed of the shape
+
+int xdirection = 1;  // Left or Right
+int ydirection = 1;  // Top to Bottom
 
 
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+void setup() 
+{
+  size(640, 480);
+  noStroke();
+  frameRate(30);
+  ellipseMode(RADIUS);
+}
+
+void draw() 
+{
+  //background(102);
+    fill(10, 10);
+//    rect(0, 0, 640, 480);
+  
+  // Update the position of the shape
+
+  // Draw the shape
+ // ellipse(30,30, rad, rad);
+  ellipse(manitos_tr[0].x, manitos_tr[0].y, rad, rad);
+  ellipse(manitos_tr[1].x, manitos_tr[1].y, rad, rad);
+  ellipse(manitos_tr[2].x, manitos_tr[2].y, rad, rad);
+  ellipse(manitos_tr[3].x, manitos_tr[3].y, rad, rad);
+  
+}
+
+</script>
+
+ <canvas width="640" height="360"></canvas>
+ <script src="js/vendor/jquery-1.11.0.js"></script>
+ <script src="js/plugins.js"></script>
+ <script src="js/main.js"></script>
+</body>
 </html>
