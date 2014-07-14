@@ -14,7 +14,38 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-		<script src="js/vendor/processing.js"></script>
+	<script src="js/vendor/processing.js"></script>
+	<script type="text/javascript">
+
+		var ws = new WebSocket("ws://10.2.50.85:10004");
+	        var manitos = [{"n": 0, "x": null, "y": null, "z": null}, {"n": 1, "x": null, "y": null, "z": null},
+	                       {"n": 2, "x": null, "y": null, "z": null}, {"n": 3, "x": null, "y": null, "z": null}];
+	        var manitos_tr = manitos;
+	        ws.onopen = function() { console.log("connection established"); };
+	        ws.onmessage = function(e) {
+	            if (e.data.length > 40) {
+	                try {
+	                    manitos = JSON.parse(e.data);
+	                    manitos_tr = manitos;
+	                    for (var i = 0; i < 4; i++) {
+	                        manitos_tr[i].x += 0;
+	                        manitos_tr[i].x += 0;
+	                    // falta la transformacion si los bordes son mas grandes 
+	                    }
+	                } catch (err){
+	                    console.log(e.data);
+	                    console.log(err);
+	                }
+	            }
+	            else {
+	                console.log(e.data);
+	            }
+	        };
+	
+	        ws.onclose = function() { console.log("connection closed"); };
+	        
+	    </script>
+
     </head>
     <body>
 
@@ -69,17 +100,17 @@ void draw(){
 	
 
   for(int i=0; i<div1; i++){
-	particle[i].run(50, 20); //run() method takes two arguments - x and y values to apply forces to
+	particle[i].run(manitos_tr[0].x, manitos_tr[0].y); //run() method takes two arguments - x and y values to apply forces to
   }
-  /*for (int i=div1; i<div1+div2; i++){
-	particle[i].run(random(0,width/2), random(0,height/2)); 
+  for (int i=div1; i<div1+div2; i++){
+	particle[i].run(manitos_tr[1].x, manitos_tr[1].y); 
   }
   for (int i=div1+div2; i<div1+div2+div3; i++){
-	particle[i].run(random(width/2,width), random(height/2,height)); 
+	particle[i].run(manitos_tr[2].x, manitos_tr[2].y); 
   }
   for (int i=50-div4; i<50; i++){
-	particle[i].run(random(width/2,width), random(0,height)); 
-  }*/
+	particle[i].run(manitos_tr[3].x, manitos_tr[3].y); 
+  }
 }
  
 //------------------------ OBJECT --------------------------------------
@@ -96,7 +127,7 @@ class Particle{
   int sz;  //size of particle
   float gravity;  //gravity variable
   float mass;  //mass variable
-  int velocityLimit = 3;  //the maximum velocity a particle can travel at
+  int velocityLimit = 4;  //the maximum velocity a particle can travel at
   float d;  //distance variable between particle and the target co-ordinates
  
   //CONSTRUCTOR
@@ -112,12 +143,17 @@ class Particle{
    
   //method to render the particle. control how it looks here!
   void display(){
-	  var _dist;
+	var _dist0, _dist1, _dist2, _dist3;
 	
-	_dist = dist(loc.x, loc.y, mouseX, mouseY);
-    ellipseMode(CENTER);
-    fill(_dist, 255, _dist);
-    ellipse(loc.x, loc.y, sz, sz);
+	_dist0 = dist(loc.x, loc.y, manitos_tr[0].x, manitos_tr[0].y);
+
+	//_dist1 = dist(loc.x, loc.y, manitos_tr[1].x, manitos_tr[1].y);
+	//_dist2 = dist(loc.x, loc.y, manitos_tr[2].x, manitos_tr[2].y);
+	//_dist3 = dist(loc.x, loc.y, manitos_tr[3].x, manitos_tr[3].y);
+
+	ellipseMode(CENTER);
+	fill(_dist0, 255, _dist0);
+	ellipse(loc.x, loc.y, sz, sz);
   }
    
   //math for attraction and repulsion forces
@@ -130,7 +166,7 @@ class Particle{
      
     //calculate the strength of the force by factoring in a gravitational constant and the mass of a particle
     //multiply by distance^2
-    float force = (gravity*mass)/(d*d);
+    float force = (gravity*mass)*d*d;
      
     //if the mouse is pressed, turn on repulsion by multiplying direction by 1
     if(mousePressed){

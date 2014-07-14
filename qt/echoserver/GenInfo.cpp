@@ -10,14 +10,46 @@ GenInfo::GenInfo(QObject *parent) : QThread(parent) {
 }
 
 void GenInfo::run() {
+
+
+
     nite::HandTracker*        pHandTracker;
     nite::HandTrackerFrameRef handFrame;
-    nite::NiTE::initialize();
+    ////////////////////////////////////////////////////////////////////////
+    /// NiTE INITIALIZATION:                                             ///
+    ////////////////////////////////////////////////////////////////////////
+    //----------------------------------------------------------------------
+    cout << "Initializing NiTE...";
+    emit enviarInfo("Initializing NiTE...");
+    if(nite::NiTE::initialize() != nite::STATUS_OK) {
+        cout << "Failed" << endl;
+        emit enviarInfo("Failed");
+        return;
+    }
+    cout << "OK" << endl;
+    emit enviarInfo("OK");
     pHandTracker = new nite::HandTracker;
-    pHandTracker->create();
+    //----------------------------------------------------------------------
+    cout << "Creating Hand Tracker...";
+    emit enviarInfo("Creating Hand Tracker...");
+    if(pHandTracker->create() != nite::STATUS_OK) {
+        cout << "Failed" << endl;
+        emit enviarInfo("Failed");
+        return;
+    }
+    cout << "OK" << endl;
+    emit enviarInfo("OK");
     QString json_stream;
 
-    pHandTracker->startGestureDetection(nite::GESTURE_HAND_RAISE);
+    cout << "Setting Gesture Detection...";
+    emit enviarInfo("Setting Gesture Detection...");
+    if(pHandTracker->startGestureDetection(nite::GESTURE_HAND_RAISE) != nite::STATUS_OK) {
+        cout << "Failed" << endl;
+        emit enviarInfo("Failed");
+        return;
+    }
+    cout << "OK" << endl;
+    emit enviarInfo("OK");
 
     // ciclo: agregar for/while
     while(true) {
@@ -66,7 +98,7 @@ void GenInfo::run() {
                 //###############
                 // ENVIAR!!!!:
                 emit enviarInfo(json_stream);
-                cout << json_stream.toStdString() << endl;
+                //cout << json_stream.toStdString() << endl;
                 //cout << "]" << endl;
             }
         }
