@@ -97,7 +97,14 @@ void draw(){
   rect(0, 0, width, height);
  
   //run all the particles in the array every frame
-	
+  manitos_tr[0].x=mouseX;
+  manitos_tr[0].y=mouseY;
+  manitos_tr[1].x=45;
+  manitos_tr[1].y=163;
+  manitos_tr[2].x=200;
+  manitos_tr[2].y=94;
+
+
 
   for(int i=0; i<div1; i++){
 	particle[i].run(manitos_tr[0].x, manitos_tr[0].y); //run() method takes two arguments - x and y values to apply forces to
@@ -146,14 +153,13 @@ class Particle{
 	var _dist0, _dist1, _dist2, _dist3;
 	
 	_dist0 = dist(loc.x, loc.y, manitos_tr[0].x, manitos_tr[0].y);
-
-	//_dist1 = dist(loc.x, loc.y, manitos_tr[1].x, manitos_tr[1].y);
-	//_dist2 = dist(loc.x, loc.y, manitos_tr[2].x, manitos_tr[2].y);
+	_dist1 = dist(loc.x, loc.y, manitos_tr[1].x, manitos_tr[1].y);
+	_dist2 = dist(loc.x, loc.y, manitos_tr[2].x, manitos_tr[2].y);
 	//_dist3 = dist(loc.x, loc.y, manitos_tr[3].x, manitos_tr[3].y);
 
 	ellipseMode(CENTER);
-	fill(_dist0, 255, _dist0);
-	ellipse(loc.x, loc.y, sz, sz);
+	fill(_dist0, _dist1, _dist2);
+	ellipse(loc.x, loc.y, sz*1.5, sz*1.5);
   }
    
   //math for attraction and repulsion forces
