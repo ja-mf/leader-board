@@ -64,7 +64,7 @@
  
 //------------------------ INITIALISE VARIABLES ------------------------
  
-int num = 50; //how many particles we'll have in the system. More particles = slower sketch.
+int num = 75; //how many particles we'll have in the system. More particles = slower sketch.
  
 Particle[] particle = new Particle[num]; //Initialise array of particles of length "num"
 var div1, div2, div3, div4;
@@ -78,9 +78,9 @@ void setup(){
   noStroke();
   background(255);
 
-  div1=floor(Math.random()*5+12.5);
-  div2=floor(Math.random()*5+12.5);
-  div3=floor(Math.random()*5+12.5);
+  div1=floor(Math.random()*7.5+18.75);
+  div2=floor(Math.random()*7.5+18.75);
+  div3=floor(Math.random()*7.5+18.75);
   div4=50-div1-div2-div3;
 
   //fill particle array with new Particle objects
@@ -152,14 +152,14 @@ class Particle{
   void display(){
 	var _dist0, _dist1, _dist2, _dist3;
 	
-	_dist0 = dist(loc.x, loc.y, manitos_tr[0].x, manitos_tr[0].y);
-	_dist1 = dist(loc.x, loc.y, manitos_tr[1].x, manitos_tr[1].y);
-	_dist2 = dist(loc.x, loc.y, manitos_tr[2].x, manitos_tr[2].y);
+	_dist0 = dist(loc.x, loc.y, manitos_tr[0].x, manitos_tr[1].y);
+	_dist1 = dist(loc.x, loc.y, manitos_tr[2].x, manitos_tr[3].y);
+	_dist2 = dist(loc.x, loc.y, manitos_tr[1].x, manitos_tr[2].y);
 	//_dist3 = dist(loc.x, loc.y, manitos_tr[3].x, manitos_tr[3].y);
 
 	ellipseMode(CENTER);
 	fill(_dist0, _dist1, _dist2);
-	ellipse(loc.x, loc.y, sz*1.5, sz*1.5);
+	ellipse(loc.x, loc.y, sz*3, sz*3);
   }
    
   //math for attraction and repulsion forces
